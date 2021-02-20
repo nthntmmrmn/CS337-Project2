@@ -68,3 +68,5 @@ def get_html(url):
 # r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 # ingredients = get_ingredients(r)
 # print(ingredients)
+# directions = get_directions(r)
+# print(directions)

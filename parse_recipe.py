@@ -4,8 +4,6 @@ from unicodedata import numeric
 import re
 import nltk
 import string
-import numpy as np
-import itertools
 
 def num(n):
     '''

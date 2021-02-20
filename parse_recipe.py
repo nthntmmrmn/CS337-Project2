@@ -69,7 +69,7 @@ def get_recipe(url):
     Input: string url to an AllRecipes.com recipe page
     Output: dict containing ingredients and directions
     '''
-    r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+    r = get_html(url)
     return {'ingredients': get_ingredients(r), 'directions': get_directions(r)}
 
 ## Example:

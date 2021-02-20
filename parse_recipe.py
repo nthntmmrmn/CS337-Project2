@@ -64,9 +64,17 @@ def get_html(url):
     r = requests.get(url)
     return BeautifulSoup(r.text, 'html.parser')
 
+def get_recipe(url):
+    '''
+    Input: string url to an AllRecipes.com recipe page
+    Output: dict containing ingredients and directions
+    '''
+    r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+    ingredients = get_ingredients(r)
+    directions = get_directions(r)
+    return {'ingredients': ingredients, 'directions': directions}
+
 ## Example:
-# r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-# ingredients = get_ingredients(r)
-# print(ingredients)
-# directions = get_directions(r)
-# print(directions)
+# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+# print(recipe['ingredients'])
+# print(recipe['directions'])

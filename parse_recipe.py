@@ -70,11 +70,9 @@ def get_recipe(url):
     Output: dict containing ingredients and directions
     '''
     r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-    ingredients = get_ingredients(r)
-    directions = get_directions(r)
-    return {'ingredients': ingredients, 'directions': directions}
+    return {'ingredients': get_ingredients(r), 'directions': get_directions(r)}
 
 ## Example:
-# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-# print(recipe['ingredients'])
-# print(recipe['directions'])
+recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+print(recipe['ingredients'])
+print(recipe['directions'])

@@ -73,6 +73,6 @@ def get_recipe(url):
     return {'ingredients': get_ingredients(r), 'directions': get_directions(r)}
 
 ## Example:
-recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-print(recipe['ingredients'])
-print(recipe['directions'])
+# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+# print(recipe['ingredients'])
+# print(recipe['directions'])

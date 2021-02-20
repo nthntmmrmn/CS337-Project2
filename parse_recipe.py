@@ -65,14 +65,6 @@ def get_html(url):
     return BeautifulSoup(r.text, 'html.parser')
 
 ## Example:
-r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-ingredients = get_ingredients(r)
-print(ingredients)
-# b = ['a','b','c']
-# c = ['d','e']
-# print(b)
-# b.extend(c)
-# print(b)
-
-# directions = get_directions(r)
-# print(directions)
+# r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+# ingredients = get_ingredients(r)
+# print(ingredients)

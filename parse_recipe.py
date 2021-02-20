@@ -4,6 +4,8 @@ from unicodedata import numeric
 import re
 import nltk
 import string
+import numpy as np
+import itertools
 
 def num(n):
     '''
@@ -18,7 +20,7 @@ def num(n):
 def parse_ingredient(ing):
     '''
     Input: ingredient string
-    Output: [amount, [measurement, [type of ingredient, rest]]]
+    Output: [amount, measurement, type of ingredient, rest]
     '''
     measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch']
     regex = re.compile('('+'(?=s| |$)|'.join(measurements)+')(?!(?s:.*)(!?('+'(?=s|es|ies| |$)|'.join(measurements)+')))\s(.*)')
@@ -33,7 +35,8 @@ def get_ingredients(soup):
     Output: List of [amount, [measurement, [type of ingredient, rest]]]
     '''
     ingredients = [i.text.strip() for i in soup.find_all("span", class_="ingredients-item-name")]
-    return [parse_ingredient(x) for x in ingredients]
+    flatten = lambda *n: (e for a in n for e in (flatten(*a) if isinstance(a, (tuple, list)) else (a,)))
+    return [list(flatten(parse_ingredient(x))) for x in ingredients]
 
 def get_type_of_ingredient(text):
     '''
@@ -64,8 +67,14 @@ def get_html(url):
     return BeautifulSoup(r.text, 'html.parser')
 
 ## Example:
-# r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-# ingredients = get_ingredients(r)
-# print(ingredients)
+r = get_html('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+ingredients = get_ingredients(r)
+print(ingredients)
+# b = ['a','b','c']
+# c = ['d','e']
+# print(b)
+# b.extend(c)
+# print(b)
+
 # directions = get_directions(r)
 # print(directions)

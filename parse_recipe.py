@@ -41,7 +41,7 @@ def get_type_of_ingredient(text):
     Input: ingredient string minus amount and measurement
     Output: [type of ingredient, rest of string]
     '''
-    pos = ['NN','JJ','VBN','NNS',',','VBG','NNS']
+    pos = ['NN','JJ','VBN','NNS',',','VBG','NNS','VBD']
     tokens = nltk.pos_tag(nltk.word_tokenize(text))
     stop = next((i for i,v in enumerate(tokens) if v[1] not in pos), len(tokens))
     type_ing = ' '.join([v[0] for i,v in enumerate(tokens[:stop])])

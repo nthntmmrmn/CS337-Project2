@@ -44,8 +44,8 @@ def get_type_of_ingredient(text):
     pos = ['NN','JJ','VBN','NNS',',','VBG','NNS','VBD']
     tokens = nltk.pos_tag(nltk.word_tokenize(text))
     stop = next((i for i,v in enumerate(tokens) if v[1] not in pos), len(tokens))
-    type_ing = ' '.join([v[0] for i,v in enumerate(tokens[:stop])])
-    rest = ' '.join([v[0] for i,v in enumerate(tokens[stop:])])
+    type_ing = ' '.join([v[0] for v in tokens[:stop]])
+    rest = ' '.join([v[0] for v in tokens[stop:]])
     return [re.sub(r'\s+([,:;-])', r'\1', type_ing).strip(string.punctuation),
             re.sub(r'\s+([,:;-])', r'\1', rest)]
 

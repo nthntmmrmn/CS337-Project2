@@ -4,6 +4,8 @@ from unicodedata import numeric
 import re
 import nltk
 import string
+import json
+import regex
 
 def num(n):
     '''
@@ -15,26 +17,25 @@ def num(n):
         try: return float(n)
         except: return 0
 
-def parse_ingredient(ing):
+def parse_ingredients_helper(ing):
     '''
     Input: ingredient string
     Output: [amount, measurement, type of ingredient, rest]
     '''
-    measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch']
+    measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch','package']
     regex = re.compile('('+'(?=s| |$)|'.join(measurements)+')(?!(?s:.*)(!?('+'(?=s|es|ies| |$)|'.join(measurements)+')))\s(.*)')
     r = re.search(regex, ing)
     words = ing.split() if r else ing[0:re.search('[^0-9\u00BC-\u00BE\u2150-\u215E\s]+', ing).end()].split()
     return [sum([num(x) for x in words]), [r.group(1), get_type_of_ingredient(r.group(4))] \
          if r else ['', get_type_of_ingredient(re.search('[0-9\u00BC-\u00BE\u2150-\u215E\s]+(.*)', ing).group(1))]]
 
-def get_ingredients(soup):
+def parse_ingredients(ing):
     '''
     Input: BeautifulSoup-parsed document
     Output: List of [amount, [measurement, [type of ingredient, rest]]]
     '''
-    ingredients = [i.text.strip() for i in soup.find_all("span", class_="ingredients-item-name")]
     flatten = lambda *n: (e for a in n for e in (flatten(*a) if isinstance(a, (tuple, list)) else (a,)))
-    return [list(flatten(parse_ingredient(x))) for x in ingredients]
+    return [list(flatten(parse_ingredients_helper(x))) for x in ing]
 
 def get_type_of_ingredient(text):
     '''
@@ -49,13 +50,6 @@ def get_type_of_ingredient(text):
     return [re.sub(r'\s+([,:;-])', r'\1', type_ing).strip(string.punctuation),
             re.sub(r'\s+([,:;-])', r'\1', rest)]
 
-def get_directions(soup):
-    '''
-    Input: BeautifulSoup-parsed document
-    Output: List of directions as strings
-    '''
-    return [i.text.strip() for i in soup.find_all("div", class_="paragraph")]
-
 def get_html(url):
     '''
     Input: string url to an AllRecipes.com recipe page
@@ -69,10 +63,14 @@ def get_recipe(url):
     Input: string url to an AllRecipes.com recipe page
     Output: dict containing ingredients and directions
     '''
-    r = get_html(url)
-    return {'ingredients': get_ingredients(r), 'directions': get_directions(r)}
+    soup = get_html(url)
+    j = json.loads(soup.find('script', type='application/ld+json').string)[1]
+    return {'ingredients': j['recipeIngredient'], 'directions': [i['text'].strip('\n') for i in j['recipeInstructions']]}
 
-## Example:
+# ## Example:
+# ## Get base recipe
 # recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 # print(recipe['ingredients'])
 # print(recipe['directions'])
+# ## Parse ingredients
+# print(parse_ingredients(recipe['ingredients']))

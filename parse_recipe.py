@@ -69,8 +69,8 @@ def get_recipe(url):
 
 # ## Example:
 # ## Get base recipe
-# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-# print(recipe['ingredients'])
-# print(recipe['directions'])
-# ## Parse ingredients
-# print(parse_ingredients(recipe['ingredients']))
+recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+#print(recipe['ingredients'])
+#print(recipe['directions'])
+## Parse ingredients
+#print(parse_ingredients(recipe['ingredients']))

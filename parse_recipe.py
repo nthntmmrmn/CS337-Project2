@@ -72,7 +72,8 @@ def get_type_of_ingredient(text):
     tokens = nltk.pos_tag(nltk.word_tokenize(typ if not flip else prep))
 
     if len(tokens)>1:
-        last_nn = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NN')
+        try: last_nn = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NN')
+        except: last_nn = 0
         try: first_jj = [w[1] for w in tokens].index('JJ')
         except: first_jj = 0
         try: last_nns = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NNS')

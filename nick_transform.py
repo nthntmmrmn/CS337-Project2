@@ -16,12 +16,17 @@ def healthy_transform(ingredient):
     descriptions = transforms['Descriptions']
     for item in descriptions:
         for i in descriptions[item]:
-            if 'ingredient' in list(i.keys()) and (t.lower() in i['ingredient'] or i['ingredient'] in t.lower()):
+            if 'ingredient' in list(i.keys()) and 'description' in list(i.keys()) and (t.lower() in i['ingredient'] or i['ingredient'] in t.lower())and (d.lower() in i['description'] or i['description'] in d.lower()):
                 if i['append'] == 'false':
                     d = item
                 else:
                     d = item + ' ' + d
-            if d != '' and 'description' in list(i.keys()) and (d.lower() in i['description'] or i['description'] in d.lower()):
+            elif 'ingredient' in list(i.keys()) and (t.lower() in i['ingredient'] or i['ingredient'] in t.lower()) and 'description' not in list(i.keys()):
+                if i['append'] == 'false':
+                    d = item
+                else:
+                    d = item + ' ' + d
+            elif d != '' and 'description' in list(i.keys()) and (d.lower() in i['description'] or i['description'] in d.lower()) and 'ingredient' not in list(i.keys()):
                 if i['append'] == 'false':
                     d = item
                 else:

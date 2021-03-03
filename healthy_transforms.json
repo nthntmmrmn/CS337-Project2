@@ -8,6 +8,31 @@
             {
                 "ingredient": "broth",
                 "append": "true"
+            },
+            {
+                "ingredient": "sauce",
+                "description": "soy",
+                "append": "true"
+            },
+            {
+                "ingredient": "chicken",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "beef",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "turkey",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "pork",
+                "description": "ground",
+                "append": "true"
             }
         ],
         "low or non fat": [
@@ -24,7 +49,11 @@
                 "append": "false"
             },
             {
-                "description": "ground",
+                "ingredient": "cheese",
+                "append": "true"
+            },
+            {
+                "ingredient": "pastry",
                 "append": "true"
             }
         ],
@@ -36,6 +65,10 @@
             },
             {
                 "ingredient": "flour",
+                "append": "true"
+            },
+            {
+                "ingredient": "tortilla",
                 "append": "true"
             }
         ]
@@ -64,6 +97,12 @@
         "turkey": {
             "Replacers": [
                 "beef"
+            ],
+            "Ratio": 1
+        },
+        "wheat flour": {
+            "Replacers": [
+                "cornstarch"
             ],
             "Ratio": 1
         }

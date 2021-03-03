@@ -10,6 +10,10 @@ import regex
 import numpy as np
 from pprint import pprint
 
+# NOTE: add to these if find something that needs added!
+measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch','small','large', 'clove', 'cloves']
+containers = ['package','carton','container','jug','box']
+
 def num(n):
     '''
     Input: string
@@ -42,26 +46,23 @@ def reconstruct_ingredient(ing):
 
 
 def parse_ingredients_helper(ing):
-    # print(f'\nparsing: {ing}')
     '''
     Input: ingredient string
     Output: [amount, measurement, type of ingredient, preparation]
     '''
-    measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch']
-    other = ['package','small','large', 'clove', 'cloves','carton','container','jug','box']
     regex = re.compile('('+'e?s?|'.join(measurements)+')(?!(?s:.*)(!?('+'e?s?|'.join(measurements)+')))[\s\)](.*)')
     r = re.search(regex, ing)
-    regex_other = re.compile('('+'e?s?|'.join(other)+')(?!(?s:.*)(!?('+'e?s?|'.join(other)+')))[\s\)](.*)')
+    regex_other = re.compile('('+'e?s?|'.join(containers)+')(?!(?s:.*)(!?('+'e?s?|'.join(containers)+')))[\s\)](.*)')
     r_other = re.search(regex_other, ing)
-    # print(f'r: {r}')
-    # print(f'r_other: {r_other}')
     words = ing.split() if r else ing[0:re.search('[^0-9\u00BC-\u00BE\u2150-\u215E\s]+', ing).end()].split()
     amt = sum([num(x) for x in words])
-    if r:
-        # print(words)
-        # print(r.group(1), r.group(4))
-        # if r_other:
-        #     print(r_other.group(1), "\t", r_other.group(4))
+    
+    if r and r_other:
+        first_num = re.search("[^\(0-9\u00BC-\u00BE\u2150-\u215E]+(.*)", ing).group(0)
+        ws = first_num[0:re.search('[^\(0-9\u00BC-\u00BE\u2150-\u215E\s]+', first_num).end()].split()
+        sm = sum([num(x.strip('()')) for x in ws])
+        typ = [f'{sm}-{r.group(1)} {r_other.group(1)}', get_type_of_ingredient(r_other.group(4))]
+    elif r:
         typ = [r.group(1), get_type_of_ingredient(r.group(4))]
     else: 
         r2 = re.search('[0-9\u00BC-\u00BE\u2150-\u215E]+(.*)', ing)
@@ -138,7 +139,7 @@ def get_type_of_ingredient(text):
         if not vbd == -1: prep += f', {" ".join([v[0] for v in tokens[vbd:]])}'
     else: desc = ''
 
-    return [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep] #if not flip else [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep]
+    return [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep]
 
 
 def get_tools(dirs):

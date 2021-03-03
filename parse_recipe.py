@@ -21,17 +21,47 @@ def num(n):
         except: return 0
 
 
+def desc_plus_ingredient(ing):
+    t = ing['type']
+    d = ing['desc']
+    if not d: return t
+    elif nltk.pos_tag(nltk.word_tokenize(d))[-1][1] == 'NNS':
+        split = d.rsplit(' ', 1)
+        return split[0].strip() + f' {t} ' + split[1].strip() if len(split)>1 else f' {t.strip()} ' + split[0].strip()
+    else: 
+        return f'{d.strip()} {t.strip()}'
+
+
+def reconstruct_ingredient(ing):
+    a = ing['amount']
+    m = ing['measurement']
+    t = ing['type']
+    d = ing['desc']
+    p = ing['prep']
+    return ' '.join(f'{a} {m+"(s) of" if m else ""} {desc_plus_ingredient(ing)}{", "+p if p else ""}'.split())
+
+
 def parse_ingredients_helper(ing):
+    # print(f'\nparsing: {ing}')
     '''
     Input: ingredient string
     Output: [amount, measurement, type of ingredient, preparation]
     '''
-    measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch','package','small','large', 'clove', 'cloves']
-    regex = re.compile('('+'e?s?|'.join(measurements)+')(?!(?s:.*)(!?('+'e?s?|'.join(measurements)+')))\s(.*)')
+    measurements = ['teaspoon','tablespoon','cup','quart','ounce','gallon','pint','pound','dash','pinch']
+    other = ['package','small','large', 'clove', 'cloves','carton','container','jug','box']
+    regex = re.compile('('+'e?s?|'.join(measurements)+')(?!(?s:.*)(!?('+'e?s?|'.join(measurements)+')))[\s\)](.*)')
     r = re.search(regex, ing)
+    regex_other = re.compile('('+'e?s?|'.join(other)+')(?!(?s:.*)(!?('+'e?s?|'.join(other)+')))[\s\)](.*)')
+    r_other = re.search(regex_other, ing)
+    # print(f'r: {r}')
+    # print(f'r_other: {r_other}')
     words = ing.split() if r else ing[0:re.search('[^0-9\u00BC-\u00BE\u2150-\u215E\s]+', ing).end()].split()
     amt = sum([num(x) for x in words])
     if r:
+        # print(words)
+        # print(r.group(1), r.group(4))
+        # if r_other:
+        #     print(r_other.group(1), "\t", r_other.group(4))
         typ = [r.group(1), get_type_of_ingredient(r.group(4))]
     else: 
         r2 = re.search('[0-9\u00BC-\u00BE\u2150-\u215E]+(.*)', ing)
@@ -70,15 +100,24 @@ def get_type_of_ingredient(text):
     prep = re.sub(r'\s+([,:;-])', r'\1', rest)
 
     tokens = nltk.pos_tag(nltk.word_tokenize(typ if not flip else prep))
+    if flip: prep = typ
 
     if len(tokens)>1:
-        last_nn = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NN')
+        do_nns = 1
+        try: last_nn = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NN')
+        except: 
+            do_nns = 0
+            last_nn = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NNS')
         try: first_jj = [w[1] for w in tokens].index('JJ')
         except: first_jj = 0
-        try: last_nns = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NNS')
-        except: last_nns = -1
+        if do_nns:
+            try: last_nns = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('NNS')
+            except: last_nns = -1
+        else: last_nns = -1
         try: last_vbg = len(tokens) - 1 - [w[1] for w in tokens][::-1].index('VBG')
         except: last_vbg = -1
+        try: vbd = [w[1] for w in tokens].index('VBD')
+        except: vbd = -1
         if last_nn + 1 == last_nns:
             if first_jj:
                 desc = ' '.join([v[0] for v in tokens[first_jj:last_nn]] + [tokens[last_nns][0]])
@@ -96,9 +135,10 @@ def get_type_of_ingredient(text):
             else:
                 desc = ' '.join([v[0] for v in tokens[:last_nn]])
                 typ = tokens[last_nn][0]
+        if not vbd == -1: prep += f', {" ".join([v[0] for v in tokens[vbd:]])}'
     else: desc = ''
 
-    return [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep] if not flip else [prep, re.sub(r'\s+([,:;-])', r'\1',desc), typ]
+    return [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep] #if not flip else [typ, re.sub(r'\s+([,:;-])', r'\1',desc), prep]
 
 
 def get_tools(dirs):
@@ -123,9 +163,9 @@ def get_methods(dirs):
     Output: dict of primary and secondary methods containing lists
     '''
     flatten = lambda *n: (e for a in n for e in (flatten(*a) if isinstance(a, (tuple, list)) else (a,)))
-    primary = list(flatten([[m for m in PRIMARY_METHODS if m in d] for d in dirs]))
-    other = list(flatten([[m for m in OTHER_METHODS if m in d and m not in primary] for d in dirs]))
-    return {'primary': primary, 'secondary': other}
+    primary = list(flatten([[m for m in PRIMARY_METHODS if m in d.lower()] for d in dirs]))
+    other = list(flatten([[m for m in OTHER_METHODS if m in d.lower() and m not in primary] for d in dirs]))
+    return {'primary': list(np.unique(primary)), 'secondary': list(np.unique(other))}
 
 
 def get_html(url):
@@ -153,6 +193,7 @@ def get_recipe(url):
 # recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/278180/greek-yogurt-blueberry-lemon-pancakes/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/280509/stuffed-french-onion-chicken-meatballs')
+# recipe = get_recipe('https://www.allrecipes.com/recipe/279677/annes-chicken-chilaquiles-rojas/')
 
 ## Print name, ingredients, recipe
 # pprint(recipe['name'])

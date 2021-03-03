@@ -1,0 +1,71 @@
+{
+    "Descriptions": {
+        "low sodium": [
+            {
+                "ingredient": "stock",
+                "append": "true"
+            },
+            {
+                "ingredient": "broth",
+                "append": "true"
+            }
+        ],
+        "low or non fat": [
+            {
+                "ingredient": "milk",
+                "append": "false"
+            },
+            {
+                "ingredient": "yogurt",
+                "append": "false"
+            },
+            {
+                "ingredient": "cream",
+                "append": "false"
+            },
+            {
+                "description": "ground",
+                "append": "true"
+            }
+        ],
+        "whole wheat": [
+            {
+                "ingredient": "bread",
+                "description": "bread",
+                "append": "true"
+            },
+            {
+                "ingredient": "flour",
+                "append": "true"
+            }
+        ]
+    },
+    "Substitutions": {
+        "oil": {
+            "Replacers": [
+                "oil"
+            ],
+            "Ratio": 1,
+            "Desc": "olive"
+        },
+        "stevia": {
+            "Replacers": [
+                "sugar"
+            ],
+            "Ratio": 1,
+            "Desc": ""
+        },
+        "applesauce": {
+            "Replacers": [
+                "butter"
+            ],
+            "Ratio": 0.5
+        },
+        "turkey": {
+            "Replacers": [
+                "beef"
+            ],
+            "Ratio": 1
+        }
+    }
+}

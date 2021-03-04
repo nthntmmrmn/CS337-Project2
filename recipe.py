@@ -5,7 +5,7 @@ from veg_transform import veg_transform
 from amount_transform import amount_transform
 
 # Example command
-# python main.py --recipe "https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/" --transformation vegetarian healthy --servings 2 --parse 1
+# python recipe.py --recipe "https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/" --transformation vegetarian healthy --servings 2 --parse 1
 
 def fake_transform(recipe): return recipe
 

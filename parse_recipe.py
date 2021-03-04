@@ -77,7 +77,7 @@ def parse_ingredients_helper(ing):
 
 def parse_ingredients(ing):
     '''
-    Input: BeautifulSoup-parsed document
+    Input: list of ingredients
     Output: List of list of dicts with keys: [amount, measurement, type of ingredient, rest]
     '''
     flatten = lambda *n: (e for a in n for e in (flatten(*a) if isinstance(a, (tuple, list)) else (a,)))
@@ -187,7 +187,7 @@ def get_recipe(url):
     '''
     soup = get_html(url)
     j = json.loads(soup.find('script', type='application/ld+json').string)[1]
-    return {'name': j['name'], 'ingredients': j['recipeIngredient'], 'directions': [i['text'].strip('\n') for i in j['recipeInstructions']]}
+    return {'name': j['name'], 'ingredients': j['recipeIngredient'], 'parsed_ingredients': parse_ingredients(j['recipeIngredient']), 'directions': [i['text'].strip('\n') for i in j['recipeInstructions']]}
 
 
 # ## Example:

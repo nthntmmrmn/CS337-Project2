@@ -62,6 +62,8 @@ def parse_ingredients_helper(ing):
         ws = first_num[0:re.search('[^\(0-9\u00BC-\u00BE\u2150-\u215E\s]+', first_num).end()].split()
         sm = sum([num(x.strip('()')) for x in ws])
         typ = [f'{sm}-{r.group(1)} {r_other.group(1)}', get_type_of_ingredient(r_other.group(4))]
+    elif r_other:
+        typ = [r_other.group(1), get_type_of_ingredient(r_other.group(4))]
     elif r:
         typ = [r.group(1), get_type_of_ingredient(r.group(4))]
     else: 

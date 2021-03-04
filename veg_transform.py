@@ -1,221 +1,37 @@
-from big_lists import MEAT, FISH
+from big_lists import VEG_SUBS
 from pprint import pprint
+import re
+from parse_recipe import desc_plus_ingredient, measurements, parse_ingredients, get_recipe, reconstruct_ingredient
 
-def veg_transform(ingredient):
-    a = ingredient['amount']
+def veg_transform(recipe):
+    x = [veg_transform_ingredient(p) for p in recipe['parsed_ingredients']]
+    new_ingredients = [i[0] for i in x]
+    repl_pairs = [(i[1],i[2]) for i in x if i[1]!=i[2]]
+    new_directions = [veg_transform_direction(d, repl_pairs) for d in recipe['directions']]
+    recipe['parsed_ingredients'] = new_ingredients
+    recipe['ingredients'] = [reconstruct_ingredient(x) for x in new_ingredients]
+    recipe['directions'] = new_directions
+    return recipe
+
+
+def veg_transform_ingredient(ingredient):
     m = ingredient['measurement']
     t = ingredient['type']
     d = ingredient['desc']
-    p = ingredient['prep']
+    dt = desc_plus_ingredient(ingredient)
+    for key in list(VEG_SUBS["Substitutions"].keys()):
+        r = re.findall('|'.join(VEG_SUBS["Substitutions"][key]["Replacers"]), dt)
+        if r:
+            ingredient['type'] = key
+            ingredient['desc'] = VEG_SUBS["Substitutions"][key]["Desc"]
+            ingredient['amount'] *= VEG_SUBS["Substitutions"][key]["Ratio"]
+            if not m or m in measurements:
+                ingredient['measurement'] = VEG_SUBS["Substitutions"][key]["Amount"]
+            break
+    return ingredient, t, ingredient['type']
 
-spec = ['broth', 'stock']
-'''
-meat broth => vegetable broth (1:1)
-meat stock => vegetable stock (1:1)
-gelatin => agar agar (1:1)
-lard => coconut oil (1:1)
-worcestershire sauce => vegan worcestershire sauce (1:1)
-fish sauce => vegan fish sauce (1:1)
 
-brisket (beef) => seitan
-fish => tempeh (seitan or jackfruit)
-other seafood => tofu
-chicken => tofu
-burger => veggie burger
-'''
-replacements = ['tofu','tempeh','seitan','textured vegetable protein','falafel','jackfruit','black beans','chickpeas','mushrooms','beyond meat','impossible meat','gardein chicken','gardein beef','gardein pork','gardein fish']
-
-pprint(MEAT)
-pprint(FISH)
-d={'seitan': [ 'bear',
- 'beef',
- 'beef heart',
- 'beef liver',
- 'beef tongue',
- 'bone soup',
- 'buffalo',
- 'bison',
- 'calf liver',
- 'calf',
- 'caribou',
- 'goat',
- 'ham',
- 'horse',
- 'kangaroo',
- 'lamb',
- 'marrow',
- 'moose',
- 'mutton',
- 'opossum',
- 'organ meats',
- 'pork',
- 'bacon',
- 'rabbit',
- 'snake',
- 'squirrel',
- 'sweetbreads',
- 'tripe',
- 'turtle',
- 'veal',
- 'venison'],
-'tofu': [ 'chicken',
- 'chicken liver',
- 'cornish game hen',
- 'duck',
- 'duck liver',
- 'emu',
- 'gizzards',
- 'goose',
- 'goose liver',
- 'grouse',
- 'guinea hen',
- 'liver',
- 'organs',
- 'ostrich',
- 'partridge',
- 'pheasant',
- 'quail',
- 'squab',
- 'turkey' ],
-'jackfruit': ['anchovies',
- 'anchovy',
- 'caviar',
- 'clam',
- 'cockle',
- 'conch',
- 'crab meat',
- 'crab',
- 'craw fish',
- 'crawfish'
- 'cray fish',
- 'crayfish',
- 'crustaceans',
- 'cuttlefish',
- 'dogfish',
- 'dorade',
- 'eel',
- 'fish',
- 'flatfish',
- 'flounder',
- 'flying-fish roe',
- 'geoduck',
- 'grouper',
- 'gurnard',
- 'haddock',
- 'hake',
- 'halibut',
- 'herring',
- 'herring roe',
- 'ikura',
- 'ilish',
- 'jellyfish',
- 'john dory',
- 'kazunoko',
- 'krill',
- 'lamprey',
- 'ling',
- 'lingcod',
- 'lobster',
- 'lobsters',
- 'loco',
- 'lumpfish roe',
- 'mackerel',
- 'mahi mahi',
- 'masago',
- 'molluscs',
- 'monkfish',
- 'mullet',
- 'mussel',
- 'mussels',
- 'nautilus',
- 'octopus',
- 'orange roughy',
- 'oyster',
- 'oysters',
- 'periwinkle',
- 'prawns',
- 'sardine',
- 'scallop',
- 'scallops',
- 'sea bass',
- 'sea bream',
- 'sea cucumber',
- 'sea urchin roe',
- 'sea urchins',
- 'shark',
- 'shrimp',
- 'shrimps',
- 'snails',
- 'squid',
- 'sturgeon roe',
- 'surimi',
- 'swordfish',
- 'tilapia',
- 'tobiko', 
- 'whale',],
-'tempeh': ['abalone',
- 'alewife',
- 'american shad',
- 'atlantic cod',
- 'barracuda',
- 'barramundi',
- 'basa',
- 'bass',
- 'billfish',
- 'black cod',
- 'blowfish',
- 'bluefish',
- 'bombay duck',
- 'bream',
- 'brill',
- 'butter fish',
- 'capelin roe',
- 'carp',
- 'catfish',
- 'chilean sea bass',
- 'cod',
- 'pacific cod',
- 'pacific sanddab',
- 'pacific snapper',
- 'parrotfish',
- 'patagonian toothfish',
- 'perch',
- 'pike',
- 'pilchard',
- 'plaice',
- 'pollock',
- 'pomfret',
- 'pompano',
- 'rainbow trout',
- 'red mullet',
- 'righteye flounder',
- 'rock cod',
- 'rockfish',
- 'sablefish',
- 'salmon',
- 'salmon roe',
- 'sanddab',
- 'shad',
- 'shad roe',
- 'skate',
- 'smelt',
- 'snakehead',
- 'snapper',
- 'sole',
- 'sprat',
- 'striped bass',
- 'sturgeon',
- 'tilefish',
- 'trout',
- 'tuna',
- 'turbot',
- 'uni',
- 'wahoo',
- 'whitebait',
- 'whitefish',
- 'whiting',
- 'witch']
-}
-
-for a in d["tempeh"]:
-    print(f'\"{a}\",')
+def veg_transform_direction(direction, replacements):
+    for pair in replacements:
+        direction = re.sub(pair[0], pair[1], direction)
+    return direction

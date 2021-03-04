@@ -4,35 +4,40 @@
             "broth"
         ],
         "Ratio": 1,
-        "Desc": "vegetable"
+        "Desc": "vegetable",
+        "Amount": ""
     },
     "stock": {
         "Replacers": [
             "stock"
         ],
         "Ratio": 1,
-        "Desc": "vegetable"
+        "Desc": "vegetable",
+        "Amount": ""
     },
     "bouillon": {
         "Replacers": [
             "bouillon"
         ],
         "Ratio": 1,
-        "Desc": "vegetable"
+        "Desc": "vegetable",
+        "Amount": ""
     },
     "agar agar": {
         "Replacers": [
             "gelatin"
         ],
         "Ratio": 1,
-        "Desc": ""
+        "Desc": "",
+        "Amount": ""
     },
-    "lard": {
+    "oil": {
         "Replacers": [
-            "oil"
+            "lard"
         ],
         "Ratio": 1,
-        "Desc": "coconut"
+        "Desc": "coconut",
+        "Amount": ""
     },
     "seitan": {
         "Replacers": [
@@ -69,7 +74,8 @@
             "venison"
         ],
         "Ratio": 1,
-        "Desc": ""
+        "Desc": "",
+        "Amount": "16-ounce package"
     },
     "tofu": {
         "Replacers": [
@@ -79,7 +85,7 @@
             "duck",
             "duck liver",
             "emu",
-            "gizzards",
+            "gizzard",
             "goose",
             "goose liver",
             "grouse",
@@ -94,7 +100,8 @@
             "turkey"
         ],
         "Ratio": 1,
-        "Desc": ""
+        "Desc": "",
+        "Amount": "16-ounce package"
     },
     "jackfruit": {
         "Replacers": [
@@ -175,7 +182,8 @@
             "whale"
         ],
         "Ratio": 1,
-        "Desc": ""
+        "Desc": "",
+        "Amount": "10-ounce package"
     },
     "tempeh": {
         "Replacers": [
@@ -243,6 +251,7 @@
             "witch"
         ],
         "Ratio": 1,
-        "Desc": ""
+        "Desc": "",
+        "Amount": "8-ounce package"
     }
 }}

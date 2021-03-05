@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # recipe = parse_recipe.get_recipe(
     #    'https://www.allrecipes.com/recipe/280509/stuffed-french-onion-chicken-meatballs')
 
-    r = 'https://www.allrecipes.com/recipe/216932/pistachio-twists/'
+    r = 'https://www.allrecipes.com/recipe/214153/monkey-bread-made-easy/'
     recipe = parse_recipe.get_recipe(r)
 
     # Print name, ingredients, recipe

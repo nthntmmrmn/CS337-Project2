@@ -187,7 +187,8 @@ def get_recipe(url):
     '''
     soup = get_html(url)
     j = json.loads(soup.find('script', type='application/ld+json').string)[1]
-    return {'name': j['name'], 'ingredients': j['recipeIngredient'], 'parsed_ingredients': parse_ingredients(j['recipeIngredient']), 'directions': [i['text'].strip('\n') for i in j['recipeInstructions']]}
+    return {'name': j['name'], 'ingredients': j['recipeIngredient'], 'parsed_ingredients': parse_ingredients(j['recipeIngredient']),
+            'directions': [i['text'].strip('\n') for i in j['recipeInstructions']], 'servings': sum([num(x) for x in j[recipeYield]])}
 
 
 # ## Example:

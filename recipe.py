@@ -12,25 +12,28 @@ def fake_transform(recipe): return recipe
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-r", "--recipe", type=str, help="AllRecipes URL")
-ap.add_argument("-t", "--transformation", nargs='+', type=str, help="Type of transformation(s) to apply (healthy, vegetarian, korean, or/and gluten-free)")
-ap.add_argument("-s", "--servings", type=float, default=1, help="Proportion by which to multiply the servings")
-ap.add_argument("-p", "--parse", type=int, default=0, help="1 to show the parsing results, 0 to not show")
+ap.add_argument("-t", "--transformation", nargs='+', type=str, help="Optional: Type of transformation(s) to apply (healthy, vegetarian, korean, or/and gluten-free). Default: None. These transformations will be applied in the order of the arguments.")
+ap.add_argument("-s", "--servings", type=int, help="Optional: Number of servings. Default: default recipe serving size")
+ap.add_argument("-p", "--parse", type=int, default=0, help="Optional: 1 to show the parsing results, 0 to not show. Default: 0")
 args = vars(ap.parse_args())
 
 # TODO: add other transformation functions:
 transformations = {'vegetarian': veg_transform, 'fake': fake_transform}
 
-if not args['recipe']:
+if args['servings'] and args['servings'] <= 0:
+    print('Serving size must be greater than zero.')
+elif not args['recipe']:
     print('Please provide a recipe URL as the --recipe argument.')
 elif any(t not in list(transformations.keys()) for t in args["transformation"]):
     print(f'Invalid transformation in {args["transformation"]}. Run `python recipe.py --help` for more info.')
 elif args['recipe'] and args['transformation']:
     recipe = get_recipe(args['recipe'])
-    print(f'Recipe name: {recipe["name"]}\n')
+    print(f'Recipe name: {recipe["name"]}')
+    print(f'Servings requested: {args["servings"] if args["servings"] else recipe["servings"]}\n')
     for t in args["transformation"]:
         print(f'***Applying {t} transformation***')
         recipe = transformations[t](recipe)
-    recipe = amount_transform(recipe, args['servings'])
+    recipe = amount_transform(recipe, args["servings"] if args["servings"] else recipe["servings"])
     print('***Printing recipe information***')
     print('\nINGREDIENTS:')
     for i in recipe['ingredients']:

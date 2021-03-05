@@ -5,11 +5,13 @@ import nltk
 
 ignore = ['minute','second','hour','minutes','seconds','hours','degree','degrees']
 
-def amount_transform(recipe, ratio):
+def amount_transform(recipe, servings):
+    ratio = servings / recipe['servings'] 
     new_ingredients = [amount_transform_ingredient(p, ratio) for p in recipe['parsed_ingredients']]
     recipe['directions'] = [amount_transform_direction(d, ratio) for d in recipe['directions']]
     recipe['parsed_ingredients'] = new_ingredients
     recipe['ingredients'] = [reconstruct_ingredient(x) for x in new_ingredients]
+    recipe['servings'] = servings
     return recipe
 
 

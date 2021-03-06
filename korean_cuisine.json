@@ -1,0 +1,98 @@
+{
+  "substitutes": {
+    "green onions": {
+                  "Replacers": [
+                "oil"
+            ],
+            "Ratio": 1,
+            "Desc": "olive"
+        }
+  },
+    "perilla leaves": [
+      "mint",
+      "basil",
+      "parsley",
+      "oregano",
+      "cilantro",
+      "thyme",
+      "rosemary"
+    ],
+    "yuja (Korean citrus)": [
+      "orange",
+      "lemon",
+      "lime"
+    ],
+    "napa cabbage": [
+      "cabbage"
+    ],
+    "sesame seeds": [
+      "seeds"
+    ],
+    "Korean red pepper flakes": [
+      "red pepper flakes",
+      "paprika",
+      "cayenne pepper",
+      "dried peppers",
+      "chile powder",
+      "cumin"
+    ],
+    "vinegar": [
+      "rice wine vinegar"
+    ],
+    "teriyaki sauce": [
+      "bulgogi sauce"
+    ],
+    "sesame oil": [
+      "oil"
+    ],
+    "dried dates": [
+      "dried cranberries"
+    ],
+    "plum extract": [
+      "honey",
+      "syrup",
+      "maple syrup"
+    ],
+    "rice syrup": [
+      "corn syrup"
+    ],
+    "pine nuts": [
+      "nut",
+      "almonds"
+    ],
+    "panko bread crumbs": [
+      "bread crumbs"
+    ],
+    "soy bean paste": [
+      "miso paste"
+    ],
+    "gochujang (Korean red pepper paste)": [
+      "paste",
+      "chili paste"
+    ],
+    "mirin rice wine": [
+      "wine"
+    ],
+    "salt": [
+      "soy sauce"
+    ],
+    "rice cakes": [
+      "gnocchi",
+      "rigatoni",
+      "pasta shells",
+      "macaroni",
+      "penne",
+      "ziti"
+    ],
+    "buckwheat noodles": [
+      "noodles",
+      "spaghetti",
+      "linguine",
+      "fettuccine"
+    ],
+    "short-grain rice": [
+      "rice",
+      "orzo"
+    ]
+  }
+}

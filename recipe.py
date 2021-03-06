@@ -3,11 +3,10 @@ from pprint import pprint
 from parse_recipe import get_recipe, get_tools, get_methods
 from veg_transform import veg_transform
 from amount_transform import amount_transform
+from healthy_transform import healthy_transform
 
 # Example command
 # python recipe.py --recipe "https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/" --transformation vegetarian healthy --servings 2 --parse 1
-
-def fake_transform(recipe): return recipe
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -18,7 +17,7 @@ ap.add_argument("-p", "--parse", type=int, default=0, help="Optional: 1 to show 
 args = vars(ap.parse_args())
 
 # TODO: add other transformation functions:
-transformations = {'vegetarian': veg_transform, 'fake': fake_transform}
+transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform}
 
 if args['servings'] and args['servings'] <= 0:
     print('Serving size must be greater than zero.')

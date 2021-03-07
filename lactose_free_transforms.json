@@ -21,7 +21,8 @@
             "mozarella",
             "ricotta",
             "cream cheese",
-            "cottage cheese"
+            "cottage cheese",
+            "cheese"
         ],
         "Ratio": 1,
         "Desc": "cheese",
@@ -34,7 +35,8 @@
             "buffalo milk",
             "2% milk",
             "skim milk",
-            "half-half milk"
+            "half-half milk",
+            "milk"
         ],
         "Ratio": 1,
         "Desc": "milk",

@@ -6,7 +6,6 @@ import re
 import nltk
 import string
 import json
-import regex
 import numpy as np
 from pprint import pprint
 
@@ -163,7 +162,7 @@ def get_type_of_ingredient(text):
     else:
         desc = ''
         typ = ''
-        
+
     return [typ, re.sub(r'\s+([,:;-])', r'\1', desc), prep]
 
 

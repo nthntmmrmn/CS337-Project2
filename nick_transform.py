@@ -1,5 +1,4 @@
 import json
-import Levenshtein
 
 with open('healthy_transforms.json') as f:
     transforms = json.load(f)

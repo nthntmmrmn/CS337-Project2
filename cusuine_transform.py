@@ -6,7 +6,6 @@ import nltk
 import string
 import json
 import regex
-#from parse_recipe import get_recipe, parse_ingredients, reconstruct_ingredient
 from parse_recipe import desc_plus_ingredient, measurements, parse_ingredients, get_recipe, reconstruct_ingredient
 
 
@@ -53,6 +52,7 @@ def cuisine_transform_parsed_ingredients(recipe):
     Output: list new ingredients
     '''
     pi = recipe['parsed_ingredients']
+    #pi = recipe['ingredients']
     return cuisine_transform_parsed_ingredients_helper2(pi)
 
 
@@ -132,19 +132,6 @@ def cuisine_transform_ing_and_dir(recipe):
     return new_ing, new_dir
 
 
-def swap_ingredient_list1(recipe):
-    """
-    Input: list of parsed ingredients
-    Output: list of tuples of (ingredient to be replaced, new ingredient)
-    """
-    parsed_ingredients = parse_ingredients(recipe['ingredients'])
-    changedIngredients = []
-    for each in parsed_ingredients:
-        if swap_parsed_ingredient_list_helper(each) is not None:
-            changedIngredients.append(swap_parsed_ingredient_list_helper(each))
-    return changedIngredients
-
-
 def cuisine_transform_recipe(recipe):
     """
     Input: Dictionary (original) recipe
@@ -167,8 +154,8 @@ with open('italian_cuisine.json') as f:
 
 # to call for recipe after cuisine transformation, call function: cuisine_transform_recipe(recipe)
 
-og_recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+#og_recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 #og_recipe = get_recipe('https://www.allrecipes.com/recipe/231545/authentic-miso-soup/')
-print("RESULT : ", cuisine_transform_recipe(og_recipe))
+#print("RESULT : ", cuisine_transform_recipe(og_recipe))
 
 

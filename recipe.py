@@ -1,6 +1,6 @@
 import argparse
 from pprint import pprint
-from parse_recipe import get_recipe, get_tools, get_methods
+from parse_recipe import get_recipe, get_tools, get_methods, parse_ingredients
 from veg_transform import veg_transform
 from amount_transform import amount_transform
 from healthy_transform import healthy_transform

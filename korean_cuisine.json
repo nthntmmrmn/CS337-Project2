@@ -1,0 +1,168 @@
+{
+  "substitutes": {
+    "green onions": {
+      "Replacers": [
+        "oregano"
+      ],
+      "Ratio": 1
+    },
+    "seasoning": {
+      "Replacers": [
+        "seasoning"
+      ],
+      "Ratio": 1,
+      "Desc": "Korean"
+    },
+    "oil": {
+      "Replacers": [
+        "oil"
+      ],
+      "Ratio": 1,
+      "Desc": "sesame"
+    },
+    "perilla leaves": {
+      "Replacers": [
+        "mint",
+        "basil",
+        "parsley",
+        "oregano",
+        "cilantro",
+        "thyme",
+        "rosemary"
+      ],
+      "Ratio": 1,
+      "Desc": ""
+    },
+    "yuja (Korean citrus)": {
+      "Replacers": [
+        "orange",
+        "lemon",
+        "lime"
+      ],
+      "Ratio": 1
+    },
+    "napa cabbage": {
+      "Replacers": [
+        "cabbage"
+      ],
+      "Ratio": 1
+    },
+    "seeds": {
+      "Replacers": [
+        "seeds"
+      ],
+      "Ratio": 1,
+      "Desc": "sesame"
+    },
+    "pepper flakes": {
+      "Replacers": [
+        "pepper",
+        "pepper flakes",
+        "paprika",
+        "cayenne pepper",
+        "dried peppers",
+        "chile powder",
+        "cumin"
+      ],
+      "Ratio": 1,
+      "Desc": "Korean red"
+    },
+    "vinegar": {
+      "Replacers": [
+        "vinegar"
+      ],
+      "Ratio": 1,
+      "Desc": "rice wine"
+    },
+    "sauce": {
+      "Replacers": [
+        "sauce"
+      ],
+      "Ratio": 1,
+      "Desc": "soy"
+    },
+    "dried dates": {
+      "Replacers": [
+        "dried cranberries"
+      ],
+      "Ratio": 1
+    },
+    "plum extract": {
+      "Replacers": [
+        "honey",
+        "syrup",
+        "maple syrup"
+      ],
+      "Ratio": 1
+    },
+    "rice syrup": {
+      "Replacers": [
+        "corn syrup"
+      ],
+      "Ratio": 1
+    },
+    "pine nuts": {
+      "Replacers": [
+        "nuts",
+        "almonds"
+      ],
+      "Ratio": 1
+    },
+    "panko bread crumbs": {
+      "Replacers": [
+        "bread crumbs"
+      ],
+      "Ratio": 1
+    },
+    "soy bean paste": {
+      "Replacers": [
+        "miso paste"
+      ],
+      "Ratio": 1
+    },
+    "gochujang (Korean red pepper paste)": {
+      "Replacers": [
+        "paste",
+        "chili paste",
+        "tomato paste"
+      ],
+      "Ratio": 1
+    },
+    "wine": {
+      "Replacers": [
+        "wine"
+      ],
+      "Ratio": 1,
+      "Desc": "rice"
+    },
+    "rice cakes": {
+      "Replacers": [
+        "gnocchi",
+        "rigatoni",
+        "pasta shells",
+        "macaroni",
+        "penne",
+        "ziti"
+      ],
+      "Ratio": 1
+    },
+    "noodles": {
+      "Replacers": [
+        "noodles",
+        "spaghetti",
+        "linguine",
+        "fettuccine"
+      ],
+      "Ratio": 1,
+      "Desc": "buckwheat"
+    },
+    "rice": {
+      "Replacers": [
+        "rice",
+        "orzo"
+      ],
+      "Ratio": 1,
+      "Desc": "short-grain"
+    }
+  }
+}

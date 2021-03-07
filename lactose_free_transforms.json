@@ -1,0 +1,67 @@
+{"Substitutions": {
+    "coconut milk yogurt": {
+        "Replacers": [
+            "yogurt",
+            "frozen yogurt"
+        ],
+        "Ratio": 1,
+        "Desc": "yogurt",
+        "Amount": ""
+    },
+    "olive oil": {
+        "Replacers": [
+            "butter"
+        ],
+        "Ratio": 1,
+        "Desc": "oil",
+        "Amount": ""
+    },
+    "soy cheese": {
+        "Replacers": [
+            "mozarella",
+            "ricotta",
+            "cream cheese",
+            "cottage cheese"
+        ],
+        "Ratio": 1,
+        "Desc": "cheese",
+        "Amount": ""
+    },
+    "lactose-free milk": {
+        "Replacers": [
+            "cow's milk",
+            "goat’s milk",
+            "buffalo milk",
+            "2% milk",
+            "skim milk",
+            "half-half milk"
+        ],
+        "Ratio": 1,
+        "Desc": "milk",
+        "Amount": ""
+    },
+    "dairy-free whipped cream": {
+        "Replacers": [
+            "whipped cream"
+        ],
+        "Ratio": 1,
+        "Desc": "whipped cream",
+        "Amount": ""
+    },
+    "coconut cream": {
+        "Replacers": [
+            "sour cream"
+        ],
+        "Ratio": 1,
+        "Desc": "",
+        "Amount": ""
+    },
+    "lemon juice": {
+        "Replacers": [
+            "buttermilk"
+        ],
+        "Ratio": 1,
+        "Desc": "",
+        "Amount": "1 tablespoon"
+    }
+}}

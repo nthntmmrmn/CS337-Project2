@@ -4,6 +4,7 @@ from parse_recipe import get_recipe, get_tools, get_methods
 from veg_transform import veg_transform
 from amount_transform import amount_transform
 from healthy_transform import healthy_transform
+from lactose_free_transform import lactose_free_transform
 
 # Example command
 # python recipe.py --recipe "https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/" --transformation vegetarian healthy --servings 2 --parse 1
@@ -11,13 +12,13 @@ from healthy_transform import healthy_transform
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-r", "--recipe", type=str, help="AllRecipes URL")
-ap.add_argument("-t", "--transformation", nargs='+', type=str, help="Optional: Type of transformation(s) to apply (healthy, vegetarian, korean, or/and gluten-free). Default: None. These transformations will be applied in the order of the arguments.")
+ap.add_argument("-t", "--transformation", nargs='+', type=str, help="Optional: Type of transformation(s) to apply (healthy, vegetarian, korean, or/and lactose-free). Default: None. These transformations will be applied in the order of the arguments.")
 ap.add_argument("-s", "--servings", type=int, help="Optional: Number of servings. Default: default recipe serving size")
 ap.add_argument("-p", "--parse", type=int, default=0, help="Optional: 1 to show the parsing results, 0 to not show. Default: 0")
 args = vars(ap.parse_args())
 
 # TODO: add other transformation functions:
-transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform}
+transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform, 'lactose free': lactose_free_transform}
 
 if args['servings'] and args['servings'] <= 0:
     print('Serving size must be greater than zero.')

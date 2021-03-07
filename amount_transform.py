@@ -3,6 +3,9 @@ import re
 from parse_recipe import parse_ingredients, num, get_recipe, reconstruct_ingredient
 import nltk
 
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 ignore = ['minute','second','hour','minutes','seconds','hours','degree','degrees']
 
 def amount_transform(recipe, servings):

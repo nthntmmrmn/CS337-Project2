@@ -218,7 +218,7 @@ def get_recipe(url):
 # ## Example:
 ## Get base recipe (uncomment one)
 # recipe = get_recipe('https://www.allrecipes.com/recipe/173505/big-bs-collard-greens/')
-recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/278180/greek-yogurt-blueberry-lemon-pancakes/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/280509/stuffed-french-onion-chicken-meatballs')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/279677/annes-chicken-chilaquiles-rojas/')
@@ -235,5 +235,5 @@ recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skew
 # pprint(methods)
 
 ## Parse ingredients
-pi = parse_ingredients(recipe['ingredients'])
-pprint(pi)
+# pi = parse_ingredients(recipe['ingredients'])
+# pprint(pi)

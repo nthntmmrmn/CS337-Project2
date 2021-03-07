@@ -26,7 +26,7 @@ if args['servings'] and args['servings'] <= 0:
 elif not args['recipe']:
     print('Please provide a recipe URL as the --recipe argument.')
 elif args['transformation'] and any(t not in list(transformations.keys()) for t in args["transformation"]):
-    print(f'Invalid transformation in {args["transformation"]}. Run `python recipe.py --help` for more info.')
+    print(f"Invalid transformation in {args['transformation']}. Run python recipe.py --help for more info.")
 elif args['recipe'] and args['transformation']:
     recipe = get_recipe(args['recipe'])
     print(f'Recipe name: {recipe["name"]}')

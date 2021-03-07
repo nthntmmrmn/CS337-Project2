@@ -1,15 +1,4 @@
 {
-  "korean_seasonings": {
-    "seasonings": {
-      "Replacers": [
-        "soy sauce",
-        "Korean red pepper flakes",
-        "sesame oil",
-        "ginger"
-      ]
-    }
-  },
-
   "substitutes": {
     "green onions": {
       "Replacers": [

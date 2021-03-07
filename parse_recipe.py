@@ -232,17 +232,3 @@ def get_recipe(url):
 ## Parse ingredients
 # pi = parse_ingredients(recipe['ingredients'])
 # pprint(pi)
-
-
-"""
-recipe = get_recipe('https://www.allrecipes.com/recipe/279677/annes-chicken-chilaquiles-rojas/')
-
-print(get_recipe('https://www.allrecipes.com/recipe/279677/annes-chicken-chilaquiles-rojas/'))
-# Parse tools and methods
-
-
-tools = get_tools(recipe['directions'])
-print(tools)
-directions = recipe['directions']
-print(directions)
-"""

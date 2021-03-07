@@ -9,8 +9,7 @@ import regex
 #from parse_recipe import get_recipe, parse_ingredients, reconstruct_ingredient
 from parse_recipe import desc_plus_ingredient, measurements, parse_ingredients, get_recipe, reconstruct_ingredient
 
-with open('cuisine_transform.json') as f:
-    korean_transforms = json.load(f)
+
 
 # transforms ingredients to Korean ingredients
 def cuisine_transform_parsed_ingredients_helper1(ingredient):
@@ -26,7 +25,7 @@ def cuisine_transform_parsed_ingredients_helper1(ingredient):
     p = ingredient['prep']
 
     # Substituting ingredients for other ingredients
-    substitutions = korean_transforms['substitutes']
+    substitutions = cuisine_transforms['substitutes']
     for item in substitutions:
         if t.lower() in substitutions[item]['Replacers']:
             t = item
@@ -71,7 +70,7 @@ def swap_parsed_ingredient_list_helper(new_ingredient):
     d = new_ingredient['desc']
     p = new_ingredient['prep']
 
-    substitutions = korean_transforms['substitutes']
+    substitutions = cuisine_transforms['substitutes']
 
     for item in substitutions:
         if t.lower() in substitutions[item]['Replacers']:
@@ -162,8 +161,15 @@ def cuisine_transform_recipe(recipe):
 
 
 
+#with open('korean_cuisine.json') as f:
+#    cuisine_transforms = json.load(f)
+
+with open('italian_cuisine.json') as f:
+    cuisine_transforms = json.load(f)
+
 
 # to call for recipe after cuisine transformation, call function: cuisine_transform_recipe(recipe)
 
 #og_recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-#print("RESULT : ", cuisine_transform_recipe(og_recipe))
+og_recipe = get_recipe('https://www.allrecipes.com/recipe/54202/greek-style-garlic-chicken-breast/')
+print("RESULT : ", cuisine_transform_recipe(og_recipe))

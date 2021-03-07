@@ -1,0 +1,110 @@
+{
+    "Descriptions": {
+        "low sodium": [
+            {
+                "ingredient": "stock",
+                "append": "true"
+            },
+            {
+                "ingredient": "broth",
+                "append": "true"
+            },
+            {
+                "ingredient": "sauce",
+                "description": "soy",
+                "append": "true"
+            },
+            {
+                "ingredient": "chicken",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "beef",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "turkey",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "pork",
+                "description": "ground",
+                "append": "true"
+            }
+        ],
+        "low or non fat": [
+            {
+                "ingredient": "milk",
+                "append": "false"
+            },
+            {
+                "ingredient": "yogurt",
+                "append": "false"
+            },
+            {
+                "ingredient": "cream",
+                "append": "false"
+            },
+            {
+                "ingredient": "cheese",
+                "append": "true"
+            },
+            {
+                "ingredient": "pastry",
+                "append": "true"
+            }
+        ],
+        "whole wheat": [
+            {
+                "ingredient": "bread",
+                "description": "bread",
+                "append": "true"
+            },
+            {
+                "ingredient": "flour",
+                "append": "true"
+            },
+            {
+                "ingredient": "tortilla",
+                "append": "true"
+            }
+        ]
+    },
+    "Substitutions": {
+        "oil": {
+            "Replacers": [
+                "oil"
+            ],
+            "Ratio": 1,
+            "Desc": "olive"
+        },
+        "stevia": {
+            "Replacers": [
+                "sugar"
+            ],
+            "Ratio": 1,
+            "Desc": ""
+        },
+        "applesauce": {
+            "Replacers": [
+                "butter"
+            ],
+            "Ratio": 0.5
+        },
+        "turkey": {
+            "Replacers": [
+                "beef"
+            ],
+            "Ratio": 1
+        },
+        "wheat flour": {
+            "Replacers": [
+                "cornstarch"
+            ],
+            "Ratio": 1
+        }
+    }
+}

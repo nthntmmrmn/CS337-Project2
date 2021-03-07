@@ -18,7 +18,7 @@ ap.add_argument("-p", "--parse", type=int, default=0, help="Optional: 1 to show 
 args = vars(ap.parse_args())
 
 # TODO: add other transformation functions:
-transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform, 'lactose free': lactose_free_transform}
+transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform, 'lactosefree': lactose_free_transform}
 
 if args['servings'] and args['servings'] <= 0:
     print('Serving size must be greater than zero.')

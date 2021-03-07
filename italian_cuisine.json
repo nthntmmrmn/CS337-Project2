@@ -1,0 +1,123 @@
+{
+  "substitutes": {
+    "seasoning": {
+      "Replacers": [
+        "seasoning"
+      ],
+      "Ratio": 1,
+      "Desc": "Italian"
+    },
+    "oil": {
+      "Replacers": [
+        "oil"
+      ],
+      "Ratio": 1,
+      "Desc": "olive"
+    },
+    "basil": {
+      "Replacers": [
+        "cilantro"
+      ],
+      "Ratio": 1
+    },
+    "parsley": {
+      "Replacers": [
+        "mint",
+        "cilantro",
+        "green onions"
+      ],
+      "Ratio": 1
+    },
+    "pepper": {
+      "Replacers": [
+        "pepper"
+      ],
+      "Ratio": 1,
+      "Desc": "black"
+    },
+    "Ragù alla Bolognese": {
+      "Replacers": [
+        "sauce"
+      ],
+      "Ratio": 1,
+      "Desc": "tomato"
+    },
+    "paste": {
+      "Replacers": [
+        "paste"
+      ],
+      "Ratio": 1,
+      "Desc": "tomato"
+    },
+    "vinegar": {
+      "Replacers": [
+        "vinegar"
+      ],
+      "Ratio": 1,
+      "Desc": "balsamic"
+    },
+    "Pinot Grigio": {
+      "Replacers": [
+        "wine"
+      ],
+      "Ratio": 1
+    },
+    "gnocchi": {
+      "Replacers": [
+        "rice cake",
+        "macaroni"
+      ],
+      "Ratio": 1
+    },
+    "spaghetti": {
+      "Replacers": [
+        "spaghetti"
+      ],
+      "Ratio": 1
+    },
+    "orzo": {
+      "Replacers": [
+        "rice"
+      ],
+      "Ratio": 1
+    },
+    "bread": {
+      "Replacers": [
+        "bread"
+      ],
+      "Ratio": 1,
+      "Desc": "Italian"
+    },
+    "sausage": {
+      "Replacers": [
+        "sausage"
+      ],
+      "Ratio": 1,
+      "Desc": "Italian"
+    },
+    "parmigiano reggiano": {
+      "Replacers": [
+        "parmesan"
+      ],
+      "Ratio": 1
+    },
+    "lemon": {
+      "Replacers": [
+        "lime"
+      ],
+      "Ratio": 1
+        },
+    "red pepper flakes": {
+      "Replacers": [
+        "pepper flakes",
+        "paprika",
+        "cayenne pepper",
+        "dried peppers",
+        "chile powder",
+        "cumin"
+      ],
+      "Ratio": 1,
+      "Desc": "crushed"
+    }
+  }
+}

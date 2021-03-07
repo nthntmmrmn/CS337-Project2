@@ -1,10 +1,11 @@
 import argparse
 from pprint import pprint
-from parse_recipe import get_recipe, get_tools, get_methods
+from parse_recipe import get_recipe, get_tools, get_methods, parse_ingredients
 from veg_transform import veg_transform
 from amount_transform import amount_transform
 from healthy_transform import healthy_transform
 from lactose_free_transform import lactose_free_transform
+from cuisine_transform import cuisine_transform_korean, cuisine_transform_italian
 
 # Example command
 # python recipe.py --recipe "https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/" --transformation vegetarian healthy --servings 2 --parse 1
@@ -18,13 +19,13 @@ ap.add_argument("-p", "--parse", type=int, default=0, help="Optional: 1 to show 
 args = vars(ap.parse_args())
 
 # TODO: add other transformation functions:
-transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform, 'lactosefree': lactose_free_transform}
+transformations = {'vegetarian': veg_transform, 'healthy': healthy_transform, 'lactose-free': lactose_free_transform, 'korean': cuisine_transform_korean, 'italian': cuisine_transform_italian}
 
 if args['servings'] and args['servings'] <= 0:
     print('Serving size must be greater than zero.')
 elif not args['recipe']:
     print('Please provide a recipe URL as the --recipe argument.')
-elif any(t not in list(transformations.keys()) for t in args["transformation"]):
+elif args['transformation'] and any(t not in list(transformations.keys()) for t in args["transformation"]):
     print(f'Invalid transformation in {args["transformation"]}. Run `python recipe.py --help` for more info.')
 elif args['recipe'] and args['transformation']:
     recipe = get_recipe(args['recipe'])

@@ -8,14 +8,14 @@ Dependencies:
     - numpy
 
 How to install dependencies:
-	- install virtualenv 
-		pip install virtualenv
-	- create a new environment
-		python3.6 -m venv virtualenv
-	- activate your virtual environment
-		source virtualenv/bin/activate
-	- install dependencies
-		pip install -r requirements.txt
+    - install virtualenv 
+	pip install virtualenv
+    - create a new environment
+	python3.6 -m venv virtualenv
+    - activate your virtual environment
+	source virtualenv/bin/activate
+    - install dependencies
+	pip install -r requirements.txt
 
 How to use:
     - Run `recipe.py` with the appropriate arguments. See description of arguments below.

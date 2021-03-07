@@ -157,9 +157,13 @@ def get_type_of_ingredient(text):
                 desc = ' '.join([v[0] for v in tokens[:last_nn]])
                 typ = tokens[last_nn][0]
         if not vbd == -1: prep += f', {" ".join([v[0] for v in tokens[vbd:]])}'
+    elif len(tokens) == 1:
+        desc = ''
+        typ = tokens[0][0]
     else:
         desc = ''
-
+        typ = ''
+        
     return [typ, re.sub(r'\s+([,:;-])', r'\1', desc), prep]
 
 
@@ -206,7 +210,8 @@ def get_recipe(url):
     '''
     soup = get_html(url)
     j = json.loads(soup.find('script', type='application/ld+json').string)[1]
-    return {'name': j['name'], 'ingredients': j['recipeIngredient'],
+    return {'name': j['name'], 
+            'ingredients': j['recipeIngredient'],
             'parsed_ingredients': parse_ingredients(j['recipeIngredient']),
             'directions': [i['text'].strip('\n') for i in j['recipeInstructions']],
             'servings': sum([num(x) for x in j['recipeYield']])}
@@ -214,7 +219,7 @@ def get_recipe(url):
 # ## Example:
 ## Get base recipe (uncomment one)
 # recipe = get_recipe('https://www.allrecipes.com/recipe/173505/big-bs-collard-greens/')
-# recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/278180/greek-yogurt-blueberry-lemon-pancakes/')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/280509/stuffed-french-onion-chicken-meatballs')
 # recipe = get_recipe('https://www.allrecipes.com/recipe/279677/annes-chicken-chilaquiles-rojas/')
@@ -231,5 +236,5 @@ def get_recipe(url):
 # pprint(methods)
 
 ## Parse ingredients
-# pi = parse_ingredients(recipe['ingredients'])
-# pprint(pi)
+pi = parse_ingredients(recipe['ingredients'])
+pprint(pi)

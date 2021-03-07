@@ -18,17 +18,15 @@
       "Replacers": [
         "cilantro"
       ],
-      "Ratio": 1,
-      "Desc": ""
+      "Ratio": 1
     },
     "parsley": {
       "Replacers": [
         "mint",
         "cilantro",
-        "green onion"
+        "green onions"
       ],
-      "Ratio": 1,
-      "Desc": ""
+      "Ratio": 1
     },
     "pepper": {
       "Replacers": [

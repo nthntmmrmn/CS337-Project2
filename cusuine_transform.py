@@ -10,8 +10,6 @@ import regex
 from parse_recipe import desc_plus_ingredient, measurements, parse_ingredients, get_recipe, reconstruct_ingredient
 
 
-
-# transforms ingredients to Korean ingredients
 def cuisine_transform_parsed_ingredients_helper1(ingredient):
     """
     Input: list of original ingredients
@@ -45,8 +43,7 @@ def cuisine_transform_parsed_ingredients_helper2(parsed_ingredients):
     """
     new_pi = []
     for each in parsed_ingredients:
-        if swap_parsed_ingredient_list_helper(each) is not None:
-            new_pi.append(cuisine_transform_parsed_ingredients_helper1(each))
+        new_pi.append(cuisine_transform_parsed_ingredients_helper1(each))
     return new_pi
 
 
@@ -55,7 +52,7 @@ def cuisine_transform_parsed_ingredients(recipe):
     Input: list of original ingredients
     Output: list new ingredients
     '''
-    pi = parse_ingredients(recipe['ingredients'])
+    pi = recipe['parsed_ingredients']
     return cuisine_transform_parsed_ingredients_helper2(pi)
 
 
@@ -119,8 +116,8 @@ def cuisine_transform_direction_helper(direction, replacements):
 
 def cuisine_transform_ing_and_dir(recipe):
     """
-    Input: list of original ingredients
-    Output: list new ingredients
+    Input: dictionary of recipe
+    Output: list new ingredients and list of new directions
     """
     new_ing = []
     ingredients = recipe['ingredients']
@@ -155,7 +152,7 @@ def cuisine_transform_recipe(recipe):
     """
     ing_dir = cuisine_transform_ing_and_dir(recipe)
     recipe['ingredients'] = ing_dir[0]
-    recipe['parsed_ingredients'] = cuisine_transform_parsed_ingredients(recipe)
+    recipe['parsed_ingredients'] = cuisine_transform_parsed_ingredients_helper2(recipe['parsed_ingredients'])
     recipe['directions'] = ing_dir[1]
     return recipe
 
@@ -170,6 +167,8 @@ with open('italian_cuisine.json') as f:
 
 # to call for recipe after cuisine transformation, call function: cuisine_transform_recipe(recipe)
 
-#og_recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
-og_recipe = get_recipe('https://www.allrecipes.com/recipe/54202/greek-style-garlic-chicken-breast/')
+og_recipe = get_recipe('https://www.allrecipes.com/recipe/273864/greek-chicken-skewers/')
+#og_recipe = get_recipe('https://www.allrecipes.com/recipe/231545/authentic-miso-soup/')
 print("RESULT : ", cuisine_transform_recipe(og_recipe))
+
+

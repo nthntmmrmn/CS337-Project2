@@ -13,26 +13,6 @@
                 "ingredient": "sauce",
                 "description": "soy",
                 "append": "true"
-            },
-            {
-                "ingredient": "chicken",
-                "description": "ground",
-                "append": "true"
-            },
-            {
-                "ingredient": "beef",
-                "description": "ground",
-                "append": "true"
-            },
-            {
-                "ingredient": "turkey",
-                "description": "ground",
-                "append": "true"
-            },
-            {
-                "ingredient": "pork",
-                "description": "ground",
-                "append": "true"
             }
         ],
         "low or non fat": [
@@ -54,6 +34,26 @@
             },
             {
                 "ingredient": "pastry",
+                "append": "true"
+            },
+            {
+                "ingredient": "chicken",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "beef",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "turkey",
+                "description": "ground",
+                "append": "true"
+            },
+            {
+                "ingredient": "pork",
+                "description": "ground",
                 "append": "true"
             }
         ],

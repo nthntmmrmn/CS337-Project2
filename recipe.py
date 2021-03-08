@@ -57,6 +57,8 @@ elif args['recipe'] and args['transformation']:
 elif args['recipe'] and not args['transformation']:
     recipe = get_recipe(args['recipe'])
     print(f'Recipe name: {recipe["name"]}')
+    print(f'Servings requested: {args["servings"] if args["servings"] else recipe["servings"]}\n')
+    recipe = amount_transform(recipe, args["servings"] if args["servings"] else recipe["servings"])
     print('\nNo transformation applied.\n***Printing recipe information***')
     print('\nINGREDIENTS:')
     for i in recipe['ingredients']:

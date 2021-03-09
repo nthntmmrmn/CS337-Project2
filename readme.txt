@@ -1,5 +1,9 @@
 CS 337 Project 2: Recipe Parser & Interactive Cookbook
 
+Github Repo: https://github.com/nthntmmrmn/CS337-Project2
+
+Team members: Nathan Timmerman, Nicholas Kao, Esther Whang, Batuhan Ergor
+
 Python version: 3.6
 Dependencies:
     - requests
